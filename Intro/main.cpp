@@ -1,6 +1,14 @@
-#include <iostream>
+#include <GLUT/glut.h>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+void display(void)
+{
+}
+
+int main(int argc, char *argv[])
+{
+    glutInit(&argc, argv);
+    glutCreateWindow("Intro");
+    glutDisplayFunc(display);
+    glutMainLoop();
     return 0;
 }
