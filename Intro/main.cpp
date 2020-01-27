@@ -23,22 +23,25 @@ void Resize(int w, int h)
 
 void Mouse(int button, int state, int x, int y)
 {
+    static int point_x, point_y;
     std::string direction;
-    switch (button)
+    if (button == GLUT_LEFT_BUTTON)
     {
-        case GLUT_RIGHT_BUTTON:
-            direction = "right";
-            break;
-        case GLUT_LEFT_BUTTON:
-            direction = "left";
-            break;
-        case GLUT_MIDDLE_BUTTON:
-            direction = "middle";
-            break;
-        default:
-            break;
+        if (state == GLUT_UP)
+        {
+            /// Stroke Color (White)
+            glColor3d(0.0, 0.0, 0.0);
+            glBegin(GL_LINES);
+            glVertex2i(point_x, point_y);
+            glVertex2i(x, y);
+            glEnd();
+            glFlush();
+        } else {
+            /// Remember point clicked
+            point_x = x;
+            point_y = y;
+        }
     }
-    std::cout << direction + ": " << x << ":" << y << std::endl;
 }
 
 void InitBackGroundColor(void)
@@ -54,7 +57,7 @@ int main(int argc, char *argv[])
     glutInitWindowSize(320, 240);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA);
-    glutCreateWindow("MouseInput");
+    glutCreateWindow("Canvas");
     glutDisplayFunc(Display);
     glutReshapeFunc(Resize);
     glutMouseFunc(Mouse);
