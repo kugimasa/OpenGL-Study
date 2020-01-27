@@ -1,6 +1,6 @@
 #include <GLUT/glut.h>
 
-void display(void)
+void Display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_POLYGON);
@@ -16,16 +16,16 @@ void display(void)
     glFlush();
 }
 
-void resize(int w, int h)
+void Resize(int w, int h)
 {
-    const float width = 200.0;
-    const float height = 200.0;
+    const float basic_width = 200.0;
+    const float basic_height = 200.0;
     glViewport(0, 0, w, h);
     glLoadIdentity();
-    glOrtho(-w / width, w / width, -h / height , h / height, -1.0, 1.0);
+    glOrtho(-w / basic_width, w / basic_width, -h / basic_height , h / basic_height, -1.0, 1.0);
 }
 
-void initBackGroundColor(void)
+void InitBackGroundColor(void)
 {
     ///The color I like
     glClearColor((double)120/255, (double)240/255, (double)80/255,1.0);
@@ -39,9 +39,9 @@ int main(int argc, char *argv[])
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA);
     glutCreateWindow("Viewport");
-    glutDisplayFunc(display);
-    glutReshapeFunc(resize);
-    initBackGroundColor();
+    glutDisplayFunc(Display);
+    glutReshapeFunc(Resize);
+    InitBackGroundColor();
     glutMainLoop();
     return 0;
 }
