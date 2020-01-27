@@ -16,6 +16,15 @@ void display(void)
     glFlush();
 }
 
+void resize(int w, int h)
+{
+    const float width = 200.0;
+    const float height = 200.0;
+    glViewport(0, 0, w, h);
+    glLoadIdentity();
+    glOrtho(-w / width, w / width, -h / height , h / height, -1.0, 1.0);
+}
+
 void initBackGroundColor(void)
 {
     ///The color I like
@@ -25,10 +34,13 @@ void initBackGroundColor(void)
 
 int main(int argc, char *argv[])
 {
+    glutInitWindowPosition(100, 100);
+    glutInitWindowSize(320, 240);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA);
-    glutCreateWindow("2D-Draw");
+    glutCreateWindow("Viewport");
     glutDisplayFunc(display);
+    glutReshapeFunc(resize);
     initBackGroundColor();
     glutMainLoop();
     return 0;
