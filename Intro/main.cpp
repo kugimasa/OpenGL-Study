@@ -4,7 +4,7 @@
 #define MAXPOINTS 100
 GLint points[MAXPOINTS][2];
 int point_num = 0;
-
+bool rubberband = true;
 
 void Display(void)
 {
@@ -51,9 +51,43 @@ void Mouse(int button, int state, int x, int y)
             glVertex2iv(points[point_num]);
             glEnd();
             glFlush();
+            rubberband = true;
         }
         if (point_num < MAXPOINTS - 1) ++point_num;
     }
+}
+
+void Motion(int x, int y)
+{
+    static GLint tmp_point[2];
+
+    /// Logical Operation ON
+    glEnable(GL_COLOR_LOGIC_OP);
+    glLogicOp(GL_INVERT);
+
+    glBegin(GL_LINES);
+    if (!rubberband)
+    {
+        /// Erase Rubber-band
+        glVertex2iv(points[point_num -1]);
+        glVertex2iv(tmp_point);
+    }
+    /// Draw new Rubber-band
+    glVertex2iv(points[point_num - 1]);
+    glVertex2i(x, y);
+    glEnd();
+    glFlush();
+
+    /// Logical Operation OFF
+    glLogicOp(GL_COPY);
+    glDisable(GL_COLOR_LOGIC_OP);
+
+    /// Save Rubber-band point
+    tmp_point[0] = x;
+    tmp_point[1] = y;
+
+    /// Erase Rubber-band
+    rubberband = false;
 }
 
 void InitBackGroundColor(void)
@@ -69,10 +103,11 @@ int main(int argc, char *argv[])
     glutInitWindowSize(320, 240);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA);
-    glutCreateWindow("Canvas");
+    glutCreateWindow("Rubber-band");
     glutDisplayFunc(Display);
     glutReshapeFunc(Resize);
     glutMouseFunc(Mouse);
+    glutMotionFunc(Motion);
     InitBackGroundColor();
     glutMainLoop();
     return 0;
