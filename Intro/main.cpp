@@ -90,6 +90,15 @@ void Motion(int x, int y)
     rubberband = false;
 }
 
+void Exit(unsigned char key, int x, int y)
+{
+    if(key == 'q' || key == 'Q' || key == 27)
+    {
+        std::cout << "Close Project 👋" << std::endl;
+        exit(0);
+    }
+}
+
 void InitBackGroundColor(void)
 {
     ///The color I like
@@ -108,6 +117,7 @@ int main(int argc, char *argv[])
     glutReshapeFunc(Resize);
     glutMouseFunc(Mouse);
     glutMotionFunc(Motion);
+    glutKeyboardFunc(Exit);
     InitBackGroundColor();
     glutMainLoop();
     return 0;
