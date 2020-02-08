@@ -4,26 +4,19 @@
 void Display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    /// Rotate 45(deg) in axis-Y
-    glRotated(45.0, 0.0, 1.0, 0.0);
-
-    glBegin(GL_POLYGON);
-    glColor3d(1.0, 0.0, 0.0);
-    glVertex2d(-0.9, -0.9);
-    glColor3d(0.0, 1,0.0);
-    glVertex2d(0.9, -0.9);
-    glColor3d(0.0, 0.0, 1.0);
-    glVertex2d(0.9, 0.9);
-    glColor3d(1.0, 1.0, 0.0);
-    glVertex2d(-0.9, 0.9);
+    /// The Color I Like
+    glColor3d((double)120/255, (double)240/255, (double)80/255);
+    glRotated(25.0,0.0 ,1.0 , 0.0);
+    glRotated(25.0,1.0 ,0.0 , 0.0);
+    glutWireCube(1.0);
     glEnd();
     glFlush();
 }
 
 void InitBackGroundColor(void)
 {
-    ///The color I like
-    glClearColor((double)120/255, (double)240/255, (double)80/255,1.0);
+    /// Black
+    glClearColor(0.0, 0.0, 0.0,1.0);
 }
 
 void Exit(unsigned char key, int x, int y)
@@ -40,7 +33,7 @@ int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA);
-    glutCreateWindow("Draw-in-3D");
+    glutCreateWindow("CUBE");
     glutDisplayFunc(Display);
     glutKeyboardFunc(Exit);
     InitBackGroundColor();
