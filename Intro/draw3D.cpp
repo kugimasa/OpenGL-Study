@@ -1,6 +1,9 @@
 #include <iostream>
 #include <GLUT/glut.h>
 
+const float width = 200.0;
+const float height = 200.0;
+
 void Display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -12,6 +15,17 @@ void Display(void)
     glEnd();
     glFlush();
 }
+
+void Resize(int w, int h)
+{
+    glViewport(0,0, w, h);
+    glLoadIdentity();
+    /// The Cube is scaled depending on the window size
+//    glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
+    /// The Cube size doesn't change
+    glOrtho(-w / width, w / width, -h / height, h / height, -2.0, 2.0);
+}
+
 
 void InitBackGroundColor(void)
 {
@@ -35,6 +49,7 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGBA);
     glutCreateWindow("CUBE");
     glutDisplayFunc(Display);
+    glutReshapeFunc(Resize);
     glutKeyboardFunc(Exit);
     InitBackGroundColor();
     glutMainLoop();
