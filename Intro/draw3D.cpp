@@ -9,8 +9,9 @@ void Display(void)
     glClear(GL_COLOR_BUFFER_BIT);
     /// The Color I Like
     glColor3d((double)120/255, (double)240/255, (double)80/255);
-    glRotated(25.0,0.0 ,1.0 , 0.0);
-    glRotated(25.0,1.0 ,0.0 , 0.0);
+    glTranslated(0.0, 0.0, -5.0);
+//    glRotated(25.0,0.0 ,1.0 , 0.0);
+//    glRotated(25.0,1.0 ,0.0 , 0.0);
     glutWireCube(1.0);
     glEnd();
     glFlush();
@@ -20,10 +21,15 @@ void Resize(int w, int h)
 {
     glViewport(0,0, w, h);
     glLoadIdentity();
+
+    ///// Orthogonal Projection
     /// The Cube is scaled depending on the window size
 //    glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
     /// The Cube size doesn't change
-    glOrtho(-w / width, w / width, -h / height, h / height, -2.0, 2.0);
+//    glOrtho(-w / width, w / width, -h / height, h / height, -2.0, 2.0);
+
+    ///// Perspective Projection
+    gluPerspective(30.0, (double)w / (double)h, 1.0, 1000.0);
 }
 
 
