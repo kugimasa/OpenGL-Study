@@ -31,11 +31,10 @@ void Display(void)
 
     /// The Color I Like
     glColor3d((double)120/255, (double)240/255, (double)80/255);
-    glutSolidTeapot(1.0);
+    glutWireTeapot(1.0);
     glEnd();
 
-    glFlush();
-
+    glutSwapBuffers();
     if (++rotation >= 360.0) rotation = 0.0;
 }
 
@@ -80,7 +79,7 @@ void KeyInput(unsigned char key, int x, int y)
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glutCreateWindow("Animation");
     glutDisplayFunc(Display);
     glutReshapeFunc(Resize);
