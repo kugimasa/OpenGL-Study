@@ -1,7 +1,5 @@
-#include <iostream>
+#include "animation.hpp"
 #include <GLUT/glut.h>
-
-using namespace std;
 
 const float fovy = 30.0;
 bool animationPlay = false;
@@ -74,18 +72,5 @@ void KeyInput(unsigned char key, int x, int y)
         cout << "Close Project 👋" << endl;
         exit(0);
     }
-}
-
-int main(int argc, char *argv[])
-{
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
-    glutCreateWindow("Animation");
-    glutDisplayFunc(Display);
-    glutReshapeFunc(Resize);
-    glutKeyboardFunc(KeyInput);
-    InitBackGroundColor();
-    glutMainLoop();
-    return 0;
 }
 
