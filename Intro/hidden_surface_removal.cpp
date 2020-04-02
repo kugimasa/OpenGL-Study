@@ -11,6 +11,7 @@ void TeaPots(void)
               0.0, 0.0, 0.0,
               0.0, 1.0, 0.0);
 
+    /*
     glTranslated(0.5, 0.0, 0.0);
     glColor3d(0, 1, 0);
     glutWireTeapot(1.0);
@@ -18,6 +19,10 @@ void TeaPots(void)
     glTranslated(-1.0, 0.0, 0.0);
     glColor3d(1, 0, 0);
     glutWireTeapot(1.0);
+    */
+
+    glColor3d(0, 0, 1);
+    glutSolidTeapot(1.0);
     glEnd();
 
     glutSwapBuffers();
@@ -32,7 +37,9 @@ int main(int argc, char *argv[])
     glutReshapeFunc(Resize);
     glutKeyboardFunc(KeyInput);
     InitBackGroundColor();
-    glEnable(GL_DEPTH_TEST);
+    //    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
     glutMainLoop();
     return 0;
 }
