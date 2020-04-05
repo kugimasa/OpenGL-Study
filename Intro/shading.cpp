@@ -3,6 +3,13 @@
 
 #include <GLUT/glut.h>
 
+GLfloat light0pos[] = {0.0, 0.0, 5.0, 1.0};
+GLfloat light1pos[] = {5.0, 0.0, 0.0, 1.0};
+GLfloat light2pos[] = {0.0, 5.0, 0.0, 1.0};
+GLfloat red[]       = {1.0, 0.0, 0.0, 1.0};
+GLfloat blue[]      = {0.0, 0.0, 1.0, 1.0};
+GLfloat green[]     = {0.0, 1.0, 0.0, 1.0};
+
 void Shading(void)
 {
     int v_i;
@@ -12,9 +19,15 @@ void Shading(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    gluLookAt(3.0, 4.0, 5.0,
+    gluLookAt(3.0, 3.0, 3.0,
               0.0, 0.0, 0.0,
               0.0, 1.0, 0.0);
+
+    /// Set Lights
+    glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
+    glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
+    glLightfv(GL_LIGHT2, GL_POSITION, light2pos);
+
     /// Rotate by Axis-Y
     glRotated(rotation, 1.0, 1.0, 1.0);
 
@@ -31,7 +44,8 @@ void Shading(void)
     glEnd();
 
     glutSwapBuffers();
-    if (++rotation >= 360.0) rotation = 0.0;
+    rotation += 1.5;
+    if (rotation >= 360.0) rotation = 0.0;
 }
 
 void InitLighting()
@@ -43,6 +57,12 @@ void InitLighting()
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, blue);
+    glEnable(GL_LIGHT1);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, green);
+    glEnable(GL_LIGHT2);
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, red);
+
 }
 
 int main(int argc, char *argv[]) {
