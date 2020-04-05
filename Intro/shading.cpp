@@ -1,4 +1,5 @@
 #include "3d_data.hpp"
+#include "color_data.hpp"
 #include "animation.hpp"
 
 #include <GLUT/glut.h>
@@ -6,9 +7,6 @@
 GLfloat light0pos[] = {0.0, 0.0, 5.0, 1.0};
 GLfloat light1pos[] = {5.0, 0.0, 0.0, 1.0};
 GLfloat light2pos[] = {0.0, 5.0, 0.0, 1.0};
-GLfloat red[]       = {1.0, 0.0, 0.0, 1.0};
-GLfloat blue[]      = {0.0, 0.0, 1.0, 1.0};
-GLfloat green[]     = {0.0, 1.0, 0.0, 1.0};
 
 void Shading(void)
 {
@@ -26,11 +24,13 @@ void Shading(void)
     /// Set Lights
     glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
     glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
-    glLightfv(GL_LIGHT2, GL_POSITION, light2pos);
+//    glLightfv(GL_LIGHT2, GL_POSITION, light2pos);
 
     /// Rotate by Axis-Y
     glRotated(rotation, 1.0, 1.0, 1.0);
 
+    /// Color of Object
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, WHITE);
     /// Draw image
     glBegin(GL_QUADS);
     for (n_j = 0; n_j < 6; ++n_j)
@@ -57,11 +57,11 @@ void InitLighting()
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, blue);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, BLUE);
     glEnable(GL_LIGHT1);
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, green);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, GREEN);
     glEnable(GL_LIGHT2);
-    glLightfv(GL_LIGHT2, GL_DIFFUSE, red);
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, RED);
 
 }
 
