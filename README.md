@@ -2,8 +2,10 @@
 An introduction to OpenGL in Mac
 
 ## Projects
-### [Intro](https://github.com/kugimasa/OpenGL-Study/tree/2db964269503c3a60317491f202e9888309717ee/Intro)
-This is an introduction project for OpenGL and setups in CLion
+- **[Intro](https://github.com/kugimasa/OpenGL-Study/tree/master/Intro)**
+: This is an introduction project for OpenGL and setups in CLion
+- **[Triangle](https://github.com/kugimasa/OpenGL-Study/tree/master/Triangle)**
+: Intermidiate Project using GLUT
 
 Currently studying GLUT 
 
