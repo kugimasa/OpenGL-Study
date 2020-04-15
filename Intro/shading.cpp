@@ -62,7 +62,6 @@ void InitLighting()
     glLightfv(GL_LIGHT1, GL_DIFFUSE, GREEN);
     glEnable(GL_LIGHT2);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, RED);
-
 }
 
 int main(int argc, char *argv[]) {

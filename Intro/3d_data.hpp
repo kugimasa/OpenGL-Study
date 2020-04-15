@@ -3,7 +3,7 @@
 
 #include <GLUT/glut.h>
 
-GLdouble vertex[][3] = {
+static GLdouble vertex[][3] = {
         {0.0, 0.0, 0.0}, /* A */
         {1.0, 0.0, 0.0}, /* B */
         {1.0, 1.0, 0.0}, /* C */
@@ -14,7 +14,7 @@ GLdouble vertex[][3] = {
         {0.0, 1.0, 1.0}  /* H */
 };
 
-int face[][4] = {
+static int face[][4] = {
         {0, 1, 2, 3}, /* A - B - C - D */
         {1, 5, 6, 2}, /* B - F - G - C */
         {5, 4, 7, 6}, /* F - E - H - G */
@@ -23,7 +23,7 @@ int face[][4] = {
         {3, 2, 6, 7}, /* D - C - G - H */
 };
 
-GLdouble normal[][3] = {
+static GLdouble normal[][3] = {
         { 0.0,  0.0, -1.0},
         { 1.0,  0.0,  0.0},
         { 0.0,  0.0,  1.0},
@@ -31,5 +31,7 @@ GLdouble normal[][3] = {
         { 0.0, -1.0,  0.0},
         { 0.0,  1.0,  0.0}
 };
+
+void Cube(void);
 
 #endif //INTRO_3D_DATA_HPP

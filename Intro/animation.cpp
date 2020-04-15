@@ -19,11 +19,6 @@ void Display(void)
 {
     static double rotation = 0;
     glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
-
-    gluLookAt(3.0, 4.0, 5.0,
-               0.0, 0.0, 0.0,
-               0.0, 1.0, 0.0);
     /// Rotate by Axis-Y
     glRotated(rotation, 0.0, 1.0, 0.0);
 
@@ -38,12 +33,20 @@ void Display(void)
 
 void Resize(int w, int h)
 {
-    /// Perspective Projection
+
     glViewport(0, 0, w, h);
+
+    /// Perspective Projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(fovy, (double)w/ (double)h, 1.0, 100.0);
+
+    /// Set Camera
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(6.0, 8.0, 10.0,
+              0.0, 0.0, 0.0,
+              0.0, 1.0, 0.0);
 }
 
 void KeyInput(unsigned char key, int x, int y)
