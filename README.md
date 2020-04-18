@@ -7,6 +7,8 @@ An introduction to OpenGL in Mac
 - **[Triangle](https://github.com/kugimasa/OpenGL-Study/tree/master/Triangle)**
 : Intermidiate Project using GLUT
 
-Currently studying GLUT 
+Currently studying WebGL
 
-Checkout my [GLUT-Project](https://github.com/kugimasa/OpenGL-Study/issues/7) :eyes:
+Checkout my Project Issues
+- [GLUT-Project](https://github.com/kugimasa/OpenGL-Study/issues/7)
+- [OpenGL-Project](https://github.com/kugimasa/OpenGL-Study/issues/10):eyes:
