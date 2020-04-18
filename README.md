@@ -11,4 +11,4 @@ Currently studying WebGL
 
 Checkout my Project Issues
 - [GLUT-Project](https://github.com/kugimasa/OpenGL-Study/issues/7)
-- [OpenGL-Project](https://github.com/kugimasa/OpenGL-Study/issues/10):eyes:
+- [WebGL-Project](https://github.com/kugimasa/OpenGL-Study/issues/10):eyes:
