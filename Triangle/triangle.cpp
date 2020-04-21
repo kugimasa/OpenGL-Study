@@ -19,9 +19,9 @@ void Display(void)
 
     glBegin(GL_TRIANGLES);
     glColor3d(1.0, 1.0, 1.0);
-    glVertex2d(-0.5, 0.0);
-    glVertex2d( 0.5, 0.0);
-    glVertex2d( 0.0, 0.5);
+    glVertex2d( cos(PI/2),      sin(PI/2));
+    glVertex2d( cos(7 * PI/6),  sin(7 * PI/6));
+    glVertex2d( cos(11 * PI/6), sin(11 * PI/6));
     glEnd();
 
     glFlush();
