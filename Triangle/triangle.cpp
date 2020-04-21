@@ -7,7 +7,10 @@ void InitBackGroundColor()
 
 void Hover(int x, int y)
 {
-    cout << "(" << x << "," << y <<  ")" << endl;
+    double posX =   2.0 * ( x / (double) m_Width)  - 1.0;
+    double posY = - 2.0 * ( y / (double) m_Height) + 1.0;
+
+    cout << "(" << posX << "," << posY <<  ")" << endl;
 }
 
 void Display(void)
