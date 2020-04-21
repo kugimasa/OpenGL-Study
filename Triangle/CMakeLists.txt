@@ -3,7 +3,7 @@ project(Triangle)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Triangle main.cpp)
+add_executable(Triangle main.cpp triangle.cpp triangle.hpp)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
