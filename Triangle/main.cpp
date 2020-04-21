@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
     glutCreateWindow("Triangle");
     glutDisplayFunc(Display);
     glutPassiveMotionFunc(Hover);
-    InitBackGroundColor();
     glutMainLoop();
     return 0;
 }
