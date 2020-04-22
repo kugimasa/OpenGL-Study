@@ -2,12 +2,6 @@
 
 Triangle::Triangle()
 {
-    m_Size = 1.0;
-}
-
-Triangle::Triangle(double size)
-{
-    m_Size = size;
 }
 
 Triangle::Triangle(double size, double posX, double posY)
@@ -24,6 +18,27 @@ void Triangle::SetVertex(double posX, double posY)
     }
 }
 
+double* Triangle::GetColor(int state)
+{
+    switch(state){
+        case 0:
+            return CANDY_PINK;
+        case 1:
+            return QUEEN_BLUE;
+        case 2:
+            return MEDIUM_AQUAMARINE;
+        case 3:
+            return SUNRAY;
+        default:
+            return BLACK;
+    }
+}
+
+void InitBackGround()
+{
+    glClearColor(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B, 1.0);
+};
+
 void Hover(int x, int y)
 {
 
@@ -31,13 +46,14 @@ void Hover(int x, int y)
     double posY = - 2.0 * ( y / (double) m_Height) + 1.0;
     static double size = 0.0;
     static double step = 0.05;
+    static int state = 0;
     Triangle triangle(size, posX, posY);
 
     glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.0, 0.0, 0.0, 1.0);
 
     glBegin(GL_TRIANGLES);
-    glColor3d(1.0, 1.0, 1.0);
+    double* color = triangle.GetColor(state);
+    glColor3d(color[0], color[1], color[2]);
     for (auto & vertex : triangle.m_Vertex) {
         glVertex2dv(vertex);
     }
@@ -45,8 +61,11 @@ void Hover(int x, int y)
     glutSwapBuffers();
 
     size += step;
-    if (size > 1.0) step = - 0.025;
-    if (size < 0.0) step =   0.1;
+    if (size > 1.0) step = triangle.m_DecreaseStep;
+    if (size < 0.0){
+        step = triangle.m_IncreaseStep;
+        if (state++ >= 3) state = 0;
+    }
 }
 
 void Display()
