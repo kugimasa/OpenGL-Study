@@ -34,20 +34,11 @@ double* Triangle::GetColor(int state)
     }
 }
 
-void InitBackGround()
+void DrawTriangle(void)
 {
-    glClearColor(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B, 1.0);
-};
-
-void Hover(int x, int y)
-{
-
-    double posX =   2.0 * ( x / (double) m_Width)  - 1.0;
-    double posY = - 2.0 * ( y / (double) m_Height) + 1.0;
-    static double size = 0.0;
     static double step = 0.05;
     static int state = 0;
-    Triangle triangle(size, posX, posY);
+    Triangle triangle(SIZE, ORIGIN[0], ORIGIN[1]);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -60,16 +51,29 @@ void Hover(int x, int y)
     glEnd();
     glutSwapBuffers();
 
-    size += step;
-    if (size > 1.0) step = triangle.m_DecreaseStep;
-    if (size < 0.0){
+    SIZE += step;
+    if (SIZE > 1.0) step = triangle.m_DecreaseStep;
+    if (SIZE < 0.0){
         step = triangle.m_IncreaseStep;
         if (state++ >= 3) state = 0;
     }
 }
 
+void Hover(int x, int y)
+{
+    ORIGIN[0] =   2.0 * ( x / (double) WIDTH)  - 1.0;
+    ORIGIN[1] = - 2.0 * ( y / (double) HEIGHT) + 1.0;
+    DrawTriangle();
+}
+
 void Display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(BACKGROUND_R, BACKGROUND_G, BACKGROUND_B, 1.0);
     glutSwapBuffers();
+}
+
+void Idle()
+{
+    DrawTriangle();
 }

@@ -10,8 +10,11 @@
 using namespace std;
 
 static const double PI = 3.141592653589793;
-const int m_Width = 500;
-const int m_Height = 500;
+const int WIDTH = 500;
+const int HEIGHT = 500;
+
+static double SIZE = 0.0;
+static double ORIGIN[] = {0.0, 0.0};
 
 class Triangle
 {
@@ -31,8 +34,9 @@ public:
     double m_IncreaseStep = 0.1;
 };
 
-void InitBackGround(void);
+void DrawTriangle(void);
 void Hover(int x, int y);
 void Display(void);
+void Idle(void);
 
 #endif //TRIANGLE_TRIANGLE_HPP
