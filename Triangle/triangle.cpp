@@ -49,8 +49,9 @@ void DrawTriangle(void)
     static double step = 0.05;
     static int state = 0;
     Triangle triangle0(SIZE, ORIGIN[0], ORIGIN[1]);
-    Triangle triangle1(SIZE+0.05, ORIGIN[0], ORIGIN[1]);
-    Triangle triangle2(SIZE+0.1, ORIGIN[0], ORIGIN[1]);
+    Triangle triangle1(SIZE+0.05, ORIGIN[0] - DIRECTION[0], ORIGIN[1] - DIRECTION[1]);
+    Triangle triangle2(SIZE+0.1, ORIGIN[0] - DIRECTION[0] * 2, ORIGIN[1] - DIRECTION[1] * 2);
+    Triangle triangle3(SIZE+0.15, ORIGIN[0] - DIRECTION[0] * 3, ORIGIN[1] - DIRECTION[1] * 3);
     double* color = triangle0.GetColor(state);
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -58,8 +59,9 @@ void DrawTriangle(void)
     glEnable(GL_BLEND);
     // Draw Blur Triangle
     glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    CreateTriangle(triangle3, color, 0.1);
     CreateTriangle(triangle2, color, 0.2);
-    CreateTriangle(triangle1, color, 0.4);
+    CreateTriangle(triangle1, color, 0.3);
     // Draw Original Triangle
     glBlendFunc(GL_ONE, GL_ZERO);
     CreateTriangle(triangle0, color, 1.0);
@@ -77,8 +79,12 @@ void DrawTriangle(void)
 
 void Hover(int x, int y)
 {
-    ORIGIN[0] =   2.0 * ( x / (double) WIDTH)  - 1.0;
-    ORIGIN[1] = - 2.0 * ( y / (double) HEIGHT) + 1.0;
+    double newOrigin[] = {  2.0 * ( x / (double) WIDTH)  - 1.0,
+                          - 2.0 * ( y / (double) HEIGHT) + 1.0 };
+    DIRECTION[0] = newOrigin[0] - ORIGIN[0];
+    DIRECTION[1] = newOrigin[1] - ORIGIN[1];
+    ORIGIN[0] = newOrigin[0];
+    ORIGIN[1] = newOrigin[1];
     DrawTriangle();
 }
 

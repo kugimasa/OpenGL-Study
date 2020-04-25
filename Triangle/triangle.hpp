@@ -15,6 +15,7 @@ const int HEIGHT = 500;
 
 static double SIZE = 0.0;
 static double ORIGIN[] = {0.0, 0.0};
+static double DIRECTION[] = {0.0, 0.0};
 
 class Triangle
 {
