@@ -34,61 +34,42 @@ double* Triangle::GetColor(int state)
     }
 }
 
-void DrawBlur(double step)
+void CreateTriangle(Triangle triangle, double *color, double alpha)
 {
-    double blurSize = SIZE + step;
-    Triangle triangle(blurSize, ORIGIN[0], ORIGIN[1]);
-
-    glColor4dv(WHITE);
+    glBegin(GL_TRIANGLES);
+    glColor4d(color[0], color[1], color[2], alpha);
     for (auto & vertex : triangle.m_Vertex) {
         glVertex2dv(vertex);
     }
     glEnd();
-    glutSwapBuffers();
 }
 
 void DrawTriangle(void)
 {
     static double step = 0.05;
     static int state = 0;
-    Triangle triangle(SIZE, ORIGIN[0], ORIGIN[1]);
-    Triangle blur(SIZE+0.1, ORIGIN[0], ORIGIN[1]);
-    Triangle blur2(SIZE+0.05, ORIGIN[0], ORIGIN[1]);
-    double* color = triangle.GetColor(state);
+    Triangle triangle0(SIZE, ORIGIN[0], ORIGIN[1]);
+    Triangle triangle1(SIZE+0.05, ORIGIN[0], ORIGIN[1]);
+    Triangle triangle2(SIZE+0.1, ORIGIN[0], ORIGIN[1]);
+    double* color = triangle0.GetColor(state);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
     glEnable(GL_BLEND);
+    // Draw Blur Triangle
     glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
-    glBegin(GL_TRIANGLES);
-    glColor4d(color[0], color[1], color[2], 0.2);
-    for (auto & vertex : blur.m_Vertex) {
-        glVertex2dv(vertex);
-    }
-    glEnd();
-
-    glBegin(GL_TRIANGLES);
-    glColor4d(color[0], color[1], color[2], 0.4);
-    for (auto & vertex : blur2.m_Vertex) {
-        glVertex2dv(vertex);
-    }
-    glEnd();
-
+    CreateTriangle(triangle2, color, 0.2);
+    CreateTriangle(triangle1, color, 0.4);
+    // Draw Original Triangle
     glBlendFunc(GL_ONE, GL_ZERO);
-    glBegin(GL_TRIANGLES);
-    glColor4d(color[0], color[1], color[2], 1.0);
-    for (auto & vertex : triangle.m_Vertex) {
-        glVertex2dv(vertex);
-    }
+    CreateTriangle(triangle0, color, 1.0);
     glDisable(GL_BLEND);
-
-    glEnd();
     glutSwapBuffers();
 
     SIZE += step;
-    if (SIZE > 1.0) step = triangle.m_DecreaseStep;
+    if (SIZE > 1.0) step = triangle0.m_DecreaseStep;
     if (SIZE < 0.0){
-        step = triangle.m_IncreaseStep;
+        step = triangle0.m_IncreaseStep;
         if (state++ >= 3) state = 0;
     }
 

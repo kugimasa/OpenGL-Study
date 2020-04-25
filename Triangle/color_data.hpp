@@ -11,6 +11,5 @@ static double MEDIUM_AQUAMARINE[] = {  73.0 / 255.0, 220.0 / 255.0, 117.0 / 255.
 static double SUNRAY[] =            { 238.0 / 255.0, 184.0 / 255.0, 104.0 / 255.0};
 
 static double BLACK[] = {0.0, 0.0, 0.0};
-static GLdouble WHITE[] = {1.0, 1.0, 1.0, 0.02};
 
 #endif //TRIANGLE_COLOR_DATA_HPP

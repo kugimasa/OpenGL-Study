@@ -34,8 +34,8 @@ public:
     double m_IncreaseStep = 0.1;
 };
 
+void CreateTriangle(Triangle triangle, double* color, double alpha);
 void DrawTriangle(void);
-void DrawBlur(void);
 void Hover(int x, int y);
 void Display(void);
 void Idle(void);
