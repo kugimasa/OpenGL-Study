@@ -34,20 +34,54 @@ double* Triangle::GetColor(int state)
     }
 }
 
+void DrawBlur(double step)
+{
+    double blurSize = SIZE + step;
+    Triangle triangle(blurSize, ORIGIN[0], ORIGIN[1]);
+
+    glColor4dv(WHITE);
+    for (auto & vertex : triangle.m_Vertex) {
+        glVertex2dv(vertex);
+    }
+    glEnd();
+    glutSwapBuffers();
+}
+
 void DrawTriangle(void)
 {
     static double step = 0.05;
     static int state = 0;
     Triangle triangle(SIZE, ORIGIN[0], ORIGIN[1]);
+    Triangle blur(SIZE+0.1, ORIGIN[0], ORIGIN[1]);
+    Triangle blur2(SIZE+0.05, ORIGIN[0], ORIGIN[1]);
+    double* color = triangle.GetColor(state);
 
     glClear(GL_COLOR_BUFFER_BIT);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
     glBegin(GL_TRIANGLES);
-    double* color = triangle.GetColor(state);
-    glColor3d(color[0], color[1], color[2]);
+    glColor4d(color[0], color[1], color[2], 0.2);
+    for (auto & vertex : blur.m_Vertex) {
+        glVertex2dv(vertex);
+    }
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glColor4d(color[0], color[1], color[2], 0.4);
+    for (auto & vertex : blur2.m_Vertex) {
+        glVertex2dv(vertex);
+    }
+    glEnd();
+
+    glBlendFunc(GL_ONE, GL_ZERO);
+    glBegin(GL_TRIANGLES);
+    glColor4d(color[0], color[1], color[2], 1.0);
     for (auto & vertex : triangle.m_Vertex) {
         glVertex2dv(vertex);
     }
+    glDisable(GL_BLEND);
+
     glEnd();
     glutSwapBuffers();
 
@@ -57,6 +91,7 @@ void DrawTriangle(void)
         step = triangle.m_IncreaseStep;
         if (state++ >= 3) state = 0;
     }
+
 }
 
 void Hover(int x, int y)

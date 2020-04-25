@@ -35,6 +35,7 @@ public:
 };
 
 void DrawTriangle(void);
+void DrawBlur(void);
 void Hover(int x, int y);
 void Display(void);
 void Idle(void);
