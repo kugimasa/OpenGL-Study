@@ -25,7 +25,7 @@ public:
     void SetVertex(double posX, double posY);
     double* GetColor(int state);
 
-    double m_Size = 1.0;
+    double m_Size = 0.5;
     double m_Vertex[3][2] = {
             {cos(PI/2), sin(PI/2)},
             {cos(7 * PI/6), sin(7 * PI/6)},

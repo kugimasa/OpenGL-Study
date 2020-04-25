@@ -58,7 +58,7 @@ void DrawTriangle(void)
 
     glEnable(GL_BLEND);
     // Draw Blur Triangle
-    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendFunc(GL_SRC_COLOR, GL_DST_COLOR);
     CreateTriangle(triangle3, color, 0.1);
     CreateTriangle(triangle2, color, 0.2);
     CreateTriangle(triangle1, color, 0.3);
@@ -69,7 +69,7 @@ void DrawTriangle(void)
     glutSwapBuffers();
 
     SIZE += step;
-    if (SIZE > 1.0) step = triangle0.m_DecreaseStep;
+    if (SIZE > 0.5) step = triangle0.m_DecreaseStep;
     if (SIZE < 0.0){
         step = triangle0.m_IncreaseStep;
         if (state++ >= 3) state = 0;
