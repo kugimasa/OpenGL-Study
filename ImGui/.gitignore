@@ -1,2 +1,4 @@
 build
-imgui-master
+cmake-build-debug
+# CLion Settings file
+.idea

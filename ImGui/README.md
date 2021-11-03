@@ -14,12 +14,10 @@ However, starting the ImGui example in GLUT, I saw some comment about GLUT sayin
 So I've decided to uses GLFW instead 🙂
 
 ### Installing the GLFW library in MacOS
+Use Homebrew to install the libraries.
 
-I've followed the instructions on this [page](https://subscription.packtpub.com/book/application-development/9781782169727/1/ch01lvl1sec14/installing-the-glfw-library-in-mac-os-x-and-linux).
+```
+brew install glfw glew glm
+```
 
-### Quick start of GLFW
-
-Quick start tutorial [here](https://www.glfw.org/docs/latest/quick.html#quick_steps).
-
-- [ ] Adding glad to project.
-- [ ] Building the project.
+Follow the instructions on **[With CMake and installed GLFW binaries](https://www.glfw.org/docs/3.3/build_guide.html#build_link_cmake_package)**
