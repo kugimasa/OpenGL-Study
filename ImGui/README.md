@@ -21,3 +21,8 @@ brew install glfw glew glm
 ```
 
 Follow the instructions on **[With CMake and installed GLFW binaries](https://www.glfw.org/docs/3.3/build_guide.html#build_link_cmake_package)**
+
+Download files from **[Glad](https://glad.dav1d.de/)**
+
+I was helped by this [Tutorial](https://decovar.dev/blog/2019/08/04/glfw-dear-imgui/).
+Thank you!!!
